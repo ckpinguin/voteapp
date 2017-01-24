@@ -16,7 +16,7 @@
     "start": "npm run dev",
     "dev": "webpack-dev-server --host $(hostname -I) --inline --hot --progress --colors",
     "server:dev": "nodemon server.js",
-    "server:prod": "cross-env NODE_ENV=production node server.js",
+    "server:prod": "NODE_ENV=production node server.js",
     "babelize": "babel --watch=./src --out-dir=./babelbuild"
   },
   "engines": {
