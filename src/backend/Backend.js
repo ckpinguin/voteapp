@@ -1,6 +1,14 @@
 import 'isomorphic-fetch';
 import 'babel-polyfill'; // for Promises in older browsers
 
+import {Promise} from 'bluebird';
+// Configure
+Promise.config({
+    cancellation: true,
+    longStackTraces: true,
+    warnings: true // note, run node with --trace-warnings to see full stack traces for warnings
+});
+
 //const BACKEND_URL = __API_SERVER_URL__;
 // TODO: What to do to distinguish local or remote rest server (dev and prod)?
 const BACKEND_URL = 'http://mdbserver:3000';

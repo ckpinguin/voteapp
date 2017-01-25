@@ -24,6 +24,7 @@ export default class VoteController extends React.Component {
     }
 
     /**
+    * Lifecycle hook
     * Loading all votes from the database
     */
     componentDidMount() {
