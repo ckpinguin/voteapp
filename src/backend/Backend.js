@@ -3,7 +3,7 @@ import 'babel-polyfill'; // for Promises in older browsers
 
 //const BACKEND_URL = __API_SERVER_URL__;
 //const BACKEND_URL = 'http://mdbserver:3000';
-const BACKEND_URL = 'https://localhost';
+const BACKEND_URL = 'https://voteapp-rest-server.herokuapp.com';
 console.info('BACKEND_URL: ' + BACKEND_URL);
 
 export function fetchJson(path) {
