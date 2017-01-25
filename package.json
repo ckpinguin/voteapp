@@ -14,6 +14,7 @@
     "build:clean": "rimraf ./dist",
     "build:prod": "npm run build:clean && cross-env NODE_ENV=production webpack -p",
     "start": "npm run dev",
+    "start:prod": "node server.js",
     "dev": "webpack-dev-server --host $(hostname -I) --inline --hot --progress --colors",
     "babelize": "babel --watch=./src --out-dir=./babelbuild"
   },
