@@ -11,8 +11,8 @@ Promise.config({
 
 //const BACKEND_URL = __API_SERVER_URL__;
 // TODO: What to do to distinguish local or remote rest server (dev and prod)?
-//const BACKEND_URL = 'http://mdbserver:3000';
-const BACKEND_URL = 'https://voteapp-rest-server.herokuapp.com';
+const BACKEND_URL = 'http://mdbserver:3000';
+//const BACKEND_URL = 'https://voteapp-rest-server.herokuapp.com';
 console.info('Using BACKEND_URL: ' + BACKEND_URL);
 
 export function fetchJson(path) {
