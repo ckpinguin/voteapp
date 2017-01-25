@@ -9,6 +9,10 @@ function emptyChoice() {
     const uuid = guid();
     dd(uuid, 'uuid','emptyChoice()');
     return {
+        /**
+        * To be listed correctly in our form before being saved in db,
+        * choices (as subdocuments of 'vote') still need an id
+        */
         id:     `choice_${uuid}`,
         count:  0,
         title:  null
@@ -19,9 +23,8 @@ function emptyChoice() {
 * Helper, creates an empty vote object
 */
 function emptyVote() {
-    const uuid = guid();
-    dd(uuid, 'uuid', 'emptyVote()');
     return {
+        // no id needed, db creates one (uuid based)
         title:          '',
         description:    '',
         formCompleted:  false,

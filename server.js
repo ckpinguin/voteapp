@@ -5,18 +5,6 @@ var bodyParser = require('body-parser');
 
 var PORT = process.env.PORT || 8080;
 
-// // using webpack-dev-server and middleware in development environment
-// if(process.env.NODE_ENV !== 'production') {
-//   var webpackDevMiddleware = require('webpack-dev-middleware');
-//   var webpackHotMiddleware = require('webpack-hot-middleware');
-//   var webpack = require('webpack');
-//   var config = require('./webpack.config');
-//   var compiler = webpack(config);
-//
-//   app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
-//   app.use(webpackHotMiddleware(compiler));
-// }
-
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,19 +15,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.get('/', function(request, response) {
     response.sendFile(__dirname + '/dist/index.html');
 });
-
-// ROUTES FOR OUR API
-// =============================================================================
-var router = express.Router();              // get an instance of the express Router
-
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-    res.json({ message: 'hooraaaay! welcome to our api!' });
-});
-
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-app.use('/api', router);
 
 app.listen(PORT, function(error) {
     if (error) {

@@ -2,11 +2,9 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
 const validate = require('webpack-validator');
-//const autoprefixer = require('autoprefixer');
 const poststylus = require('poststylus');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
-//const fs = require('fs');
 
 const PATHS = {
     src: path.join(__dirname, 'src'),

@@ -79,7 +79,7 @@ export default class VoteController extends React.Component {
             this.setState({
                 allVotes: [...this.state.allVotes, receivedVote]
             });
-        });
+        }).catch((err) => console.error(err));
     }
 
     /**

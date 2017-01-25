@@ -15,8 +15,6 @@
     "build:prod": "npm run build:clean && cross-env NODE_ENV=production webpack -p",
     "start": "npm run dev",
     "dev": "webpack-dev-server --host $(hostname -I) --inline --hot --progress --colors",
-    "server:dev": "nodemon server.js",
-    "server:prod": "NODE_ENV=production node server.js",
     "babelize": "babel --watch=./src --out-dir=./babelbuild"
   },
   "engines": {
@@ -78,6 +76,7 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.15.0",
     "webpack-merge": "^2.0.0",
     "webpack-validator": "^2.2.12"
   }
