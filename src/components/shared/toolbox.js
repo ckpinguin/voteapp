@@ -1,3 +1,7 @@
+/**
+* Create a uuid
+* @returns {number} uuid
+*/
 function guid() {
     function s4() {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -24,4 +28,25 @@ function dd(variable, varName, sender='') {
     console.debug(sender + ' => ' + varNameOutput, variable, ' (' + (typeof variable) + ')');
 }
 
-export { guid, dd };
+/**
+* Makes Promises cancelable (feature not yet in Promises, stage-1 in es-2016)
+* @param {Promise} promise - Promise to wrap
+
+*/
+function makeCancelable(promise) {
+    let hasCanceled_ = false;
+    return {
+        promise: new Promise(
+            (resolve, reject) => promise
+                .then(r => hasCanceled_
+                    ? reject({isCanceled: true})
+                    : resolve(r)
+            )
+        ),
+        cancel() {
+            hasCanceled_ = true;
+        }
+    };
+}
+
+export { guid, dd, makeCancelable };
