@@ -11,6 +11,7 @@ Promise.config({
 
 //const BACKEND_URL = __API_SERVER_URL__;
 // TODO: What to do to distinguish local or remote rest server (dev and prod)?
+// WORKAROUND: "npm run build:prod" with remote server active and only push that change
 const BACKEND_URL = 'http://mdbserver:3000';
 //const BACKEND_URL = 'https://voteapp-rest-server.herokuapp.com';
 console.info('Using BACKEND_URL: ' + BACKEND_URL);
