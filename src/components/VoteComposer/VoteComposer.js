@@ -259,9 +259,3 @@ export default class VoteComposer extends React.Component {
         return this.renderActiveForm();
     }
 }
-
-VoteComposer.propTypes = {
-    active:         React.PropTypes.bool,
-    onSave:         React.PropTypes.func.isRequired,
-    onDeactivate:   React.PropTypes.func.isRequired
-};
