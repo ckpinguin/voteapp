@@ -5,7 +5,7 @@ import styles from './styles.styl';
 // Stateless functional component (SFC) for displaying stuff and calling other
 // displaying components is enough
 export default function VotingComponent({ vote, onDismissVote, onRegisterChoice }) {
-    const totalVotes = vote.choices.reduce((prev, curr) => prev + curr.count, 0);
+    const totalVotes = vote.choices.reduce((sum, curr) => sum + curr.count, 0);
 
     return (
         <div className={[styles.row, styles.votingRow, styles.spacer].join(' ')}>
@@ -17,7 +17,7 @@ export default function VotingComponent({ vote, onDismissVote, onRegisterChoice 
                     {vote.description}
                 </div>
                 <div>
-                    {vote.choices.map(choice =>
+                    {vote.choices.map((choice) =>
                         <ChoiceBar key={choice.id}
                         title={choice.choiceTitle}
                         onClickHandler={() => onRegisterChoice(choice)}

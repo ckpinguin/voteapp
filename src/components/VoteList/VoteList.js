@@ -3,7 +3,7 @@ import VoteSummary from '../VoteSummary/VoteSummary';
 import VotingComponent from '../VotingComponent/VotingComponent';
 import { dd } from '../shared/toolbox';
 
-export default function VoteList({ allVotes, currentVoteId, onSelectVote, onRegisterVote, onDismissVote }) {
+export default function VoteList({ allVotes, currentVoteId }) {
     dd(allVotes, 'allVotes', 'VoteList()');
     dd(currentVoteId, 'currentVoteId', 'VoteList()');
     return (
@@ -13,12 +13,13 @@ export default function VoteList({ allVotes, currentVoteId, onSelectVote, onRegi
             if (vote.id === currentVoteId) {
                 return <VotingComponent key={vote.id}
                                         vote={vote}
-                                        onDismissVote={()=>{onDismissVote(vote);}}
-                                        onRegisterChoice={(choice)=>{onRegisterVote(vote, choice);}}
                 />;
             }
             // else just the summary
-            return <VoteSummary key={vote.id} vote={vote} onActivate={()=>{onSelectVote(vote);}}/>;
+            return <VoteSummary
+                key={vote.id}
+                vote={vote}
+            />;
         })}
     </div>
     );
@@ -26,8 +27,5 @@ export default function VoteList({ allVotes, currentVoteId, onSelectVote, onRegi
 
 VoteList.propTypes = {
     allVotes:       React.PropTypes.array.isRequired,
-    currentVoteId:  React.PropTypes.string,
-    onSelectVote:   React.PropTypes.func.isRequired,
-    onRegisterVote: React.PropTypes.func.isRequired,
-    onDismissVote:  React.PropTypes.func.isRequired
+    currentVoteId:  React.PropTypes.string
 };

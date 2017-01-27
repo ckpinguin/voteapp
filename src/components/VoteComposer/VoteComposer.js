@@ -50,7 +50,6 @@ export default class VoteComposer extends React.Component {
         this.save = this.save.bind(this);
         this.close = this.close.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.onChoiceChange = this.onChoiceChange.bind(this);
     }
 
     /**
@@ -59,7 +58,7 @@ export default class VoteComposer extends React.Component {
     close() {
         const { onDeactivate } = this.props;
         dd(onDeactivate, 'onDeactivate', 'close()');
-        this.setState({ vote: emptyVote() }); // BUG?
+        this.setState(emptyVote());
         dd(this.state, 'this.state');
         onDeactivate();
     }
