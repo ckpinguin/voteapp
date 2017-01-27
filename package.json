@@ -15,7 +15,7 @@
     "build:prod": "npm run build:clean && cross-env NODE_ENV=production webpack -p",
     "start": "npm run dev",
     "start:prod": "node server.js",
-    "dev": "webpack-dev-server --host $(hostname -I) --inline --hot --progress --colors",
+    "dev": "webpack-dev-server --host $(hostname -I) --inline --hot --progress --colors --history-api-fallback",
     "babelize": "babel --watch=./src --out-dir=./babelbuild"
   },
   "engines": {
@@ -26,6 +26,7 @@
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "compression": "^1.6.2",
     "express": "^4.14.0",
     "font-awesome": "^4.7.0",
     "isomorphic-fetch": "^2.2.1",

@@ -2,6 +2,9 @@ import React from 'react';
 import VotingComponent from '../VotingComponent/VotingComponent';
 import { fetchJson, sendJson } from '../../backend/Backend';
 import { dd } from '../shared/toolbox';
+// Since react-router v2 this is a Singleton instead of using react.context
+import { browserHistory } from 'react-router';
+var history = browserHistory;
 
 export default class SingleVoteController extends React.Component {
     /**
@@ -13,7 +16,6 @@ export default class SingleVoteController extends React.Component {
         this.state = {
             vote: null
         };
-        // TODO: maybe bind rest of funcs too?
         this.registerVote = this.registerVote.bind(this);
         this.routeToMain = this.routeToMain.bind(this);
     }
@@ -70,7 +72,7 @@ export default class SingleVoteController extends React.Component {
     * Pushing '/' to history
     */
     routeToMain() {
-        this.context.history.pushState(null, '/');
+        history.push('/');
     }
 
     render() {
@@ -78,15 +80,10 @@ export default class SingleVoteController extends React.Component {
         if (vote) {
             return <VotingComponent vote={vote}
                 onDismissVote={this.routeToMain}
-                onRegisterChoice={(choice) => this.RegisterVote(vote, choice)}
+                onRegisterChoice={(choice) => this.registerVote(vote, choice)}
             />;
         } else {
             return null;
         }
     }
 }
-
-
-SingleVoteController.contextTypes = {
-    history: React.PropTypes.object.isRequired
-};

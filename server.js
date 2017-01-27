@@ -1,10 +1,12 @@
 var path = require('path');
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
+var compression = require('compression');
 
 var PORT = process.env.PORT || 8080;
 
+var app = express();
+app.use(compression());
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));

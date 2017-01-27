@@ -3,6 +3,9 @@ import VoteList from '../VoteList/VoteList';
 import VoteComposer from '../VoteComposer/VoteComposer';
 import { fetchJson } from '../../backend/Backend';
 import { dd } from '../shared/toolbox';
+// Since react-router v2 this is a Singleton instead of using react.context
+import { browserHistory } from 'react-router';
+const history = browserHistory;
 
 export default class VoteController extends React.Component {
     /**
@@ -33,7 +36,7 @@ export default class VoteController extends React.Component {
     * @param {string} path - The target path
     */
     transitionTo(path) {
-        this.context.history.pushState(null, path);
+        history.push(path);
     }
 
     /**
@@ -59,7 +62,3 @@ export default class VoteController extends React.Component {
         );
     }
 }
-
-VoteController.contextTypes = {
-    history: React.PropTypes.object.isRequired
-};
