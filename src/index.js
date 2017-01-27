@@ -9,9 +9,7 @@ import NoMatch from './components/NoMatch/NoMatch';
 import './assets/favicon.ico';
 import './index.styl';
 
-const history=browserHistory;
-
-const router = <Router history={history}>
+const router = <Router history={browserHistory}>
         <Redirect from="/" to="/votes" />
         <Route path="/" component={Layout}>
             <Route path="login(/:redirect)" component="{LoginController}"/>

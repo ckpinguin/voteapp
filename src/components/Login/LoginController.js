@@ -1,9 +1,5 @@
 import React from 'react';
 import { dd } from '../shared/toolbox';
-//import styles from './styles.styl';
-// Since react-router v2 this is a Singleton instead of using react.context
-import { browserHistory } from 'react-router';
-const history = browserHistory;
 
 let loggedIn = false;
 
@@ -18,7 +14,7 @@ export default class LoginController extends React.Component {
             const redirect = nextState.location.pathname;
             // Replace history, so user does not get back to
             // login screen by pressing "back" button
-            history.replaceState(`login${redirect}`);
+            this.context.router.replaceState(`login${redirect}`);
         }
     }
 
@@ -69,7 +65,7 @@ export default class LoginController extends React.Component {
             ? this.props.params.redirect
             : ''}`;
         // we do not want login in our history
-        history.replaceState(destination);
+        this.context.router.replaceState(destination);
     }
 
     /**
@@ -87,7 +83,7 @@ export default class LoginController extends React.Component {
     * Pushing '/' to history
     */
     routeToMain() {
-        history.push('/');
+        this.context.router.push('/');
     }
 
     /**
@@ -126,3 +122,6 @@ export default class LoginController extends React.Component {
         </div>;
     }
 }
+LoginController.contextTypes = {
+    router: React.PropTypes.object
+};

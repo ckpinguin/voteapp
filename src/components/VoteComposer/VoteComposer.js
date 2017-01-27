@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './styles.styl';
 import { guid, dd } from '../shared/toolbox';
+import { Link } from 'react-router';
 
 /**
 * Helper, creates an empty choice object
@@ -184,13 +185,15 @@ export default class VoteComposer extends React.Component {
         return (
             <div className={[styles.row, styles.voteComposer, styles.spacer].join(' ')}
                 onClick={this.activateIfNeeded}>
-                <h1 className={styles.title}>
-                    <span className={styles.emphasis}>
-                        What do <b>you</b> want to know?
-                    </span>
-                    <div className={styles.badge}>Add voting</div>
-                </h1>
-                <p>Click here to leave your own question.</p>
+                <Link to={'/compose'}>
+                    <h1 className={styles.title}>
+                        <span className={styles.emphasis}>
+                            What do <b>you</b> want to know?
+                        </span>
+                        <div className={styles.badge}>Add voting</div>
+                    </h1>
+                    <p>Click here to leave your own question.</p>
+                </Link>
             </div>
         );
     }
