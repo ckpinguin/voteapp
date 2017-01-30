@@ -3,6 +3,7 @@ import { RoutingContext, match } from 'react-router';
 import { renderToString } from 'react-dom/server';
 import routes from '../common/routes';
 import votesCache from '../common/votesCache';
+var dd = require('../common/toolbox');
 
 export default function renderRoute(request, reply, initialData) {
     const location = request.path;
@@ -17,6 +18,7 @@ export default function renderRoute(request, reply, initialData) {
         } else if (renderProps == null) {
             reply('Not found').code(404);
         } else {
+            console.log('SSR: populating cache and pre-rendering HTML');
             votesCache.populate(initialData);
             const html = renderToString(<RoutingContext {...renderProps}/>);
             reply(renderFullPage(html, initialData));
@@ -32,7 +34,7 @@ function renderFullPage(html, initialData) {
       <title>Votes as a Service</title>
       <link rel="stylesheet" href="/tetra.css">
 <script>
-  window.__INITIAL_STATE__ = ${JSON.stringify(initialData)};
+  window.__INITIAL_STATE__  = ${JSON.stringify(initialData)};
 </script>
   </head>
 

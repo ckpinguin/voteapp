@@ -19,6 +19,16 @@ const common = {
     // Entry accepts a path or an object of entries.
     // We'll be using the latter form given it's
     // convenient with more complex configurations.
+    externals: [
+        {
+            'isomorphic-fetch': {
+                root: 'isomorphic-fetch',
+                commonjs2: 'isomorphic-fetch',
+                commonjs: 'isomorphic-fetch',
+                amd: 'isomorphic-fetch'
+            }
+        }
+    ],
     entry: [path.join(PATHS.src, 'client/main.js')],
     output: {
         path: PATHS.dist,
@@ -141,26 +151,15 @@ const dev = {
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loaders: [
-                    'style?sourceMap',
-                    'css?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-                    'postcss'
-                ]
+                loaders: ['style?sourceMap', 'css?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]', 'postcss']
             }, {
                 test: /\.styl$/,
                 exclude: /node_modules/,
-                loaders: [
-                    'style?sourceMap',
-                    'css?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-                    'postcss',
-                    'stylus'
-                ]
+                loaders: ['style?sourceMap', 'css?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]', 'postcss', 'stylus']
             }
         ]
     },
-    postcss: [
-        require('autoprefixer'),
-    ]
+    postcss: [require('autoprefixer')]
 };
 
 const prod = {
@@ -179,9 +178,7 @@ const prod = {
             }
         ]
     },
-    postcss: [
-        require('autoprefixer'),
-    ],
+    postcss: [require('autoprefixer')],
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
@@ -205,11 +202,11 @@ var config;
 
 // Detect how npm is run and branch based on that
 switch (process.env.npm_lifecycle_event) {
-case 'build:prod':
-    config = merge(common, prod);
-    break;
-default:
-    config = merge(common, dev);
+    case 'build:prod':
+        config = merge(common, prod);
+        break;
+    default:
+        config = merge(common, dev);
 }
 
 /** Extending the webpack-validator schema for special config stuff **/
