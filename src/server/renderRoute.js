@@ -1,6 +1,6 @@
 import React from 'react';
-import {RoutingContext, match} from 'react-router';
-import {renderToString} from 'react-dom/server';
+import { RoutingContext, match } from 'react-router';
+import { renderToString } from 'react-dom/server';
 import routes from '../common/routes';
 import votesCache from '../common/votesCache';
 

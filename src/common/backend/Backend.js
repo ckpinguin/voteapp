@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
 import 'babel-polyfill'; // for Promises in older browsers
+import { Promise } from 'bluebird';
 
-import {Promise} from 'bluebird';
 // Configure
 Promise.config({
     cancellation: true,

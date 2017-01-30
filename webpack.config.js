@@ -19,7 +19,7 @@ const common = {
     // Entry accepts a path or an object of entries.
     // We'll be using the latter form given it's
     // convenient with more complex configurations.
-    entry: [path.join(PATHS.src, 'index.js')],
+    entry: [path.join(PATHS.src, 'client/main.js')],
     output: {
         path: PATHS.dist,
         filename: 'static/js/bundle.js',
@@ -129,7 +129,7 @@ const dev = {
     },
     entry: [
         'webpack-hot-middleware/client',
-        path.join(PATHS.src, 'index.js')
+        path.join(PATHS.src, 'client/main.js')
         //require.resolve('react-dev-utils/webpackHotDevClient')
     ],
     module: {

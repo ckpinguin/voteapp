@@ -14,7 +14,7 @@
     "build:clean": "rimraf ./dist",
     "build:prod": "npm run build:clean && cross-env NODE_ENV=production webpack -p",
     "start": "npm run dev",
-    "start:prod": "node server.js",
+    "start:prod": "node src/server/server.js",
     "dev": "webpack-dev-server --host $(hostname -I) --inline --hot --progress --colors --history-api-fallback",
     "babelize": "babel --watch=./src --out-dir=./babelbuild"
   },
@@ -27,6 +27,7 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "compression": "^1.6.2",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "font-awesome": "^4.7.0",
     "isomorphic-fetch": "^2.2.1",

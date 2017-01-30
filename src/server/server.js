@@ -1,11 +1,12 @@
+require('babel-register'); // make import and export in loaded modules possible
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var cors = require('cors');
-import { fetchJson } from '../backend/Backend';
-import renderRoute from './renderRoute';
-import { dd } from './toolbox';
+var fetchJson = require('../common/backend/Backend');
+var renderRoute = require('./renderRoute');
+var dd = require('../common/toolbox');
 
 var PORT = process.env.PORT || 8080;
 
@@ -52,6 +53,10 @@ router.get('/votes/:voteId', function(req, res) {
             renderRoute(req, res, {vote});
         });
 });
+
+// REGISTER OUR ROUTES -------------------------------
+// all of our routes will be prefixed with /
+app.use('/', router);
 
 app.listen(PORT, function(error) {
     if (error) {
