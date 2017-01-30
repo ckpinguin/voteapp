@@ -1,5 +1,5 @@
 import React from 'react';
-import { dd } from '../shared/toolbox';
+import { dd } from '../../toolbox';
 
 let loggedIn = false;
 

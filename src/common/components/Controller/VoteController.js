@@ -2,7 +2,7 @@ import React from 'react';
 import VoteList from '../VoteList/VoteList';
 import VoteComposer from '../VoteComposer/VoteComposer';
 import { fetchJson } from '../../backend/Backend';
-import { dd } from '../shared/toolbox';
+import { dd } from '../../toolbox';
 
 export default class VoteController extends React.Component {
     /**

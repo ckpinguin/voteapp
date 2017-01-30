@@ -1,7 +1,7 @@
 import React from 'react';
 import VoteComposer from '../VoteComposer/VoteComposer';
 import { sendJson} from '../../backend/Backend';
-import { dd} from '../shared/toolbox';
+import { dd} from '../../toolbox';
 
 export default class VoteComposerController extends React.Component {
     constructor() {

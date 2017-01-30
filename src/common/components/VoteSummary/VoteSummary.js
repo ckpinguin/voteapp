@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './styles.styl';
 import { Link } from 'react-router';
+import styles from './styles.styl';
 
 export default function VoteSummary({ vote }) {
     const totalVotes = vote.choices.reduce((sum, curr) => sum + curr.count, 0);

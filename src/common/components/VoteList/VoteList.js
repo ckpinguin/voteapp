@@ -1,7 +1,7 @@
 import React from 'react';
 import VoteSummary from '../VoteSummary/VoteSummary';
 import VotingComponent from '../VotingComponent/VotingComponent';
-import { dd } from '../shared/toolbox';
+import { dd } from '../../toolbox';
 
 export default function VoteList({ allVotes, currentVoteId }) {
     dd(allVotes, 'allVotes', 'VoteList()');

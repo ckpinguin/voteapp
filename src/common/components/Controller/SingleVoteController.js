@@ -1,7 +1,7 @@
 import React from 'react';
 import VotingComponent from '../VotingComponent/VotingComponent';
 import { fetchJson, sendJson } from '../../backend/Backend';
-import { dd } from '../shared/toolbox';
+import { dd } from '../../toolbox';
 
 export default class SingleVoteController extends React.Component {
     /**

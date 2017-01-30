@@ -4,7 +4,7 @@
   "description": "",
   "author": "Christof Kälin",
   "license": "MIT",
-  "main": "index.js",
+  "main": "client/main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ckpinguin/react-boilerplate"

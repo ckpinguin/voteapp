@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './styles.styl';
-import { guid, dd } from '../shared/toolbox';
 import { Link } from 'react-router';
+import styles from './styles.styl';
+import { guid, dd } from '../../toolbox';
 
 /**
 * Helper, creates an empty choice object
