@@ -161,12 +161,7 @@ new StatsWriterPlugin({
             }, {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
-                    fallbackLoader: {
-                        loader: 'style-loader',
-                        options: {
-                            require: 'autoprefixer'
-                        }
-                    },
+                    fallbackLoader: 'style-loader',
                     loader: [
                         'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
                         'postcss-loader',
@@ -176,12 +171,7 @@ new StatsWriterPlugin({
             }, {
                 test: /\.styl$/,
                 use: ExtractTextPlugin.extract({
-                    fallbackLoader: {
-                        loader: 'style-loader',
-                        options: {
-                            require: 'autoprefixer'
-                        }
-                    },
+                    fallbackLoader: 'style-loader',
                     loader: [
                         'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
                         'postcss-loader',
