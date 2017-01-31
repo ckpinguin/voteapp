@@ -62,14 +62,17 @@ module.exports = {
         new ExtractTextPlugin('static/css/[name].css'),
         // Write out stats.json file to build directory.
 
-        new StatsWriterPlugin({
+        /*
+new StatsWriterPlugin({
             transform: function(data) {
                 return {
                     main: data.assetsByChunkName.main[0],
                     css: data.assetsByChunkName.main[1]
                 };
             }
-        })
+        })*/
+
+
     ],
     stats: { // webpack 2 option
         colors: true,
