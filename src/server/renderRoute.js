@@ -32,18 +32,18 @@ function renderFullPage(html, initialData) {
   <head lang="en">
     <meta charset="UTF-8">
       <title>Votes as a Service</title>
-      <link rel="stylesheet" href="/tetra.css">
+      <link rel="stylesheet" href="/dist/static/css/main.css">
 <script>
   window.__INITIAL_STATE__  = ${JSON.stringify(initialData)};
 </script>
   </head>
 
   <body>
-    <div id="voteAppMountPoint">${html}</div>
+    <div id="root">${html}</div>
   </body>
 
   <script type="text/javascript"
-          src="/dist/vote-app.js">
+          src="/dist/static/js/bundle.js">
   </script>
 </html>`;
 }

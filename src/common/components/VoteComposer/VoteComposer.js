@@ -183,14 +183,14 @@ export default class VoteComposer extends React.Component {
     renderInactiveForm() {
         dd(null, null, 'renderInactiveForm()');
         return (
-            <div className="row voteComposer spacer"
+            <div className="app-VoteComposer-row app-VoteComposer-spacer"
                  onClick={this.activateIfNeeded}>
                 <Link to={'/compose'}>
-                    <h1 className="title">
-                        <span className="emphasis">
+                    <h1 className="app-VoteComposer-title">
+                        <span className="app-VoteComposer-emphasis">
                             What do <b>you</b> want to know?
                         </span>
-                        <div className="badge">Add voting</div>
+                        <div className="app-VoteComposer-badge">Add voting</div>
                     </h1>
                     <p>Click here to leave your own question.</p>
                 </Link>
@@ -208,10 +208,10 @@ export default class VoteComposer extends React.Component {
         dd(null, null, 'renderActiveForm()');
 
         return (
-            <div className="row voteComposer spacer">
-                <div className="head">
-                    <h1 className="title">
-                        <input  className="title"
+            <div className="app-VoteComposer-row app-VoteComposer-spacer">
+                <div className="app-VoteComposer-head">
+                    <h1 className="app-VoteComposer-title">
+                        <input  className="app-VoteComposer-title"
                                 autoFocus
                                 name="title"
                                 type="text"
@@ -219,14 +219,14 @@ export default class VoteComposer extends React.Component {
                                 value={title}
                                 onChange={this.onChange}/>
                     </h1>
-                    <input  className="description"
+                    <input  className="app-VoteComposer-description"
                             name="description"
                             type="text"
                             placeholder="Describe your question in one sentence here"
                             value={description}
                             onChange={this.onChange}/>
                 </div>
-                <div className="composeBody">
+                <div className="app-VoteComposer-composeBody">
                     {choices.map((c, ix) => {
                         const keyAndName = `choices_${ix}`;
                         return (
@@ -240,11 +240,11 @@ export default class VoteComposer extends React.Component {
                             />
                         );
                     })}
-                    <div className="buttonBar">
-                        <a className={formCompleted ? '"button"' :
-                            '"button disabled"'}
+                    <div className="app-VoteComposer-buttonBar">
+                        <a className={formCompleted ? '"app-VoteComposer-button"' :
+                            '"app-VoteComposer-button app-VoteComposer-button-disabled"'}
                             onClick={formCompleted ? this.save : null}>Save</a>
-                        <a className="button" onClick={this.close}>Cancel</a>
+                        <a className="app-VoteComposer-button" onClick={this.close}>Cancel</a>
                     </div>
                 </div>
             </div>

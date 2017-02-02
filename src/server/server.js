@@ -1,4 +1,5 @@
-require('babel-register'); // make import and export in loaded modules possible
+// make import and export in loaded modules possible (not top-level though!)
+require('babel-register');
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
