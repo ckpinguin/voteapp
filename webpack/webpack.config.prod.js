@@ -13,7 +13,6 @@ const PATHS = {
 };
 
 module.exports = {
-    /*
     externals: [
         {
             'isomorphic-fetch': {
@@ -23,9 +22,7 @@ module.exports = {
                 amd: 'isomorphic-fetch'
             }
         }
-    ],    */
-
-
+    ],
     // Entry accepts a path or an object of entries.
     // We'll be using the latter form given it's
     // convenient with more complex configurations.
@@ -129,7 +126,7 @@ new StatsWriterPlugin({
                         // This is a feature of `babel-loader` for webpack (not Babel itself).
                         // It enables caching results in ./node_modules/.cache/babel-loader/
                         // directory for faster rebuilds.
-                        cacheDirectory: true
+                        //cacheDirectory: true
                     }
                 }
             }, {
