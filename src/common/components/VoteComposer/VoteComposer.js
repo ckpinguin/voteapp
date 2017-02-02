@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import styles from './styles.styl';
+//import styles from './styles.styl';
 import { guid, dd } from '../../toolbox';
 
 /**
@@ -183,14 +183,14 @@ export default class VoteComposer extends React.Component {
     renderInactiveForm() {
         dd(null, null, 'renderInactiveForm()');
         return (
-            <div className={[styles.row, styles.voteComposer, styles.spacer].join(' ')}
-                onClick={this.activateIfNeeded}>
+            <div className="row voteComposer spacer"
+                 onClick={this.activateIfNeeded}>
                 <Link to={'/compose'}>
-                    <h1 className={styles.title}>
-                        <span className={styles.emphasis}>
+                    <h1 className="title">
+                        <span className="emphasis">
                             What do <b>you</b> want to know?
                         </span>
-                        <div className={styles.badge}>Add voting</div>
+                        <div className="badge">Add voting</div>
                     </h1>
                     <p>Click here to leave your own question.</p>
                 </Link>
@@ -208,10 +208,10 @@ export default class VoteComposer extends React.Component {
         dd(null, null, 'renderActiveForm()');
 
         return (
-            <div className={[styles.row, styles.voteComposer, styles.spacer].join(' ')}>
-                <div className={styles.head}>
-                    <h1 className={styles.title}>
-                        <input  className={styles.title}
+            <div className="row voteComposer spacer">
+                <div className="head">
+                    <h1 className="title">
+                        <input  className="title"
                                 autoFocus
                                 name="title"
                                 type="text"
@@ -219,18 +219,18 @@ export default class VoteComposer extends React.Component {
                                 value={title}
                                 onChange={this.onChange}/>
                     </h1>
-                    <input  className={styles.description}
+                    <input  className="description"
                             name="description"
                             type="text"
                             placeholder="Describe your question in one sentence here"
                             value={description}
                             onChange={this.onChange}/>
                 </div>
-                <div className={styles.composeBody}>
+                <div className="composeBody">
                     {choices.map((c, ix) => {
                         const keyAndName = `choices_${ix}`;
                         return (
-                            <input  className={styles.choice}
+                            <input  className="choice"
                                     type="text"
                                     key={keyAndName}
                                     name={keyAndName}
@@ -240,11 +240,11 @@ export default class VoteComposer extends React.Component {
                             />
                         );
                     })}
-                    <div className={styles.buttonBar}>
-                        <a className={formCompleted ? styles.button :
-                            (styles.button + ' ' + styles.disabled)}
+                    <div className="buttonBar">
+                        <a className={formCompleted ? '"button"' :
+                            '"button disabled"'}
                             onClick={formCompleted ? this.save : null}>Save</a>
-                        <a className={styles.button} onClick={this.close}>Cancel</a>
+                        <a className="button" onClick={this.close}>Cancel</a>
                     </div>
                 </div>
             </div>

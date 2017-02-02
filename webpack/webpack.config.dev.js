@@ -6,17 +6,12 @@ const webpack = require('webpack');
 const PATHS = {
     src: path.resolve(__dirname, '../src'),
     dist: path.resolve(__dirname, '../dist'),
-    //appDirectory: fs.realpathSync(process.cwd()) + '/dist/'
     publicPathDev: '/',
-    //publicPathProd: 'https://ckpinguin.github.io/react-boilerplate/dist/'
     publicPathProd: './'
 };
 
 module.exports = {
     devtool: 'source-map',
-    // Entry accepts a path or an object of entries.
-    // We'll be using the latter form given it's
-    // convenient with more complex configurations.
     externals: [
         {
             'isomorphic-fetch': {
@@ -27,6 +22,9 @@ module.exports = {
             }
         }
     ],
+    // Entry accepts a path or an object of entries.
+    // We'll be using the latter form given it's
+    // convenient with more complex configurations.
     entry: [
         //'webpack-hot-middleware/client', // webpack-dev-server handles this
         path.join(PATHS.src, 'client/main.js')
@@ -158,11 +156,13 @@ module.exports = {
                         }
                     }, {
                         loader: 'css-loader',
+                        // No CSS Modules for the moment, it does not play
+                        // well with SSR
                         options: {
                             sourceMap: true,
-                            modules: true,
+                            //modules: true,
                             importLoaders: 1,
-                            localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+                            //localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
                         }
                     }, {
                         loader: 'postcss-loader'

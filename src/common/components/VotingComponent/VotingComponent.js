@@ -1,6 +1,6 @@
 import React from 'react';
 import ChoiceBar from '../ChoiceBar/ChoiceBar';
-import styles from './styles.styl';
+//import styles from './styles.styl';
 
 // Stateless functional component (SFC) for displaying stuff and calling other
 // displaying components is enough
@@ -8,12 +8,12 @@ export default function VotingComponent({ vote, onDismissVote, onRegisterChoice 
     const totalVotes = vote.choices.reduce((sum, curr) => sum + curr.count, 0);
 
     return (
-        <div className={[styles.row, styles.votingRow, styles.spacer].join(' ')}>
-            <div className={styles.head} onClick={onDismissVote}>
-                <h1 className={styles.title}>{vote.title}
-                    <div className={styles.badge}>{totalVotes} Votes</div>
+        <div className="app-VotingComponent-row app-VotingComponent-votingRow app-VotingComponent-spacer">
+            <div className="app-VotingComponent-head" onClick={onDismissVote}>
+                <h1 className="app-VotingComponent-title">{vote.title}
+                    <div className="app-VotingComponent-badge">{totalVotes} Votes</div>
                 </h1>
-                <div className={[styles.description, styles.emphasis].join(' ')}>
+                <div className="app-VotingComponent-description app-VotingComponent-emphasis">
                     {vote.description}
                 </div>
                 <div>
@@ -25,8 +25,8 @@ export default function VotingComponent({ vote, onDismissVote, onRegisterChoice 
                         {...choice}/>
                     )}
                 </div>
-                <div className={styles.buttonBar}>
-                    <div className={styles.button}
+                <div className="app-VotingComponent-buttonBar">
+                    <div className="app-VotingComponent-button"
                         onClick={onDismissVote}>Vote later</div>
                 </div>
             </div>

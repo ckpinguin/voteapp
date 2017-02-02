@@ -1,14 +1,15 @@
 import React from 'react';
-import styles from './styles.styl';
+//import styles from './styles.styl';
+
 
 // Stateless functional component (SFC) is enough for just displaying stuff
 export default function ChoiceBar({title, count, percent, onClickHandler}) {
     return(
-        <div className={styles.choiceBar} onClick={onClickHandler}>
-            <div className={styles.progress} style={{'width': percent + '%'}}>
-                <div className={styles.choiceBarTitle}>{title}</div>
+        <div className="app-ChoiceBar" onClick={onClickHandler}>
+            <div className="app-ChoiceBar-progress" style={{'width': percent + '%'}}>
+                <div className="app-ChoiceBar-title">{title}</div>
             </div>
-            <div className={styles.choiceBarBadge}>{count}</div>
+            <div className="app-ChoiceBar-badge">{count}</div>
         </div>
     );
 }

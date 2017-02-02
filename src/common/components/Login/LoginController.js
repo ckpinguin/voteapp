@@ -101,22 +101,22 @@ export default class LoginController extends React.Component {
     * be cleaner
     */
     render() {
-        return <div className="{[styles.row, styles.votesRow]}">
-          <div className="{styles.head}">
-            <h1 className="{styles.title}">You need to login to perform that action</h1>
+        return <div className="app-LoginController">
+          <div className="app-LoginController-head">
+            <h1 className="app-LoginController-title">You need to login to perform that action</h1>
           </div>
 
-          <div className="{styles.loginForm}">
+          <div className="app-LoginController-loginForm">
             <input type="text"
                    placeholder="Enter your email address here"
                    value={this.state.email}
                    onChange={this.onChange}/>
-            <div className="{styles.buttonBar}">
-              <a className="{this.isValidEmail()
-                    ? styles.button
-                    : [styles.button, styles.disabled].join(' ')}"
+            <div className="app-LoginController-buttonBar">
+              <a className={this.isValidEmail()
+                    ? 'app-LoginController-button'
+                    : 'app-LoginController-button-disabled'}
                  onClick={this.isValidEmail() ? this.login : null}>Login</a>
-              <a className="{styles.button}" onClick={this.routeToMain}>Cancel</a>
+              <a className="app-LoginController-button" onClick={this.routeToMain}>Cancel</a>
             </div>
           </div>
         </div>;

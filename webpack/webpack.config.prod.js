@@ -1,7 +1,5 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const StatsWriterPlugin = require('webpack-stats-plugin').StatsWriterPlugin;
-const poststylus = require('poststylus');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 
@@ -15,9 +13,7 @@ const PATHS = {
 };
 
 module.exports = {
-    // Entry accepts a path or an object of entries.
-    // We'll be using the latter form given it's
-    // convenient with more complex configurations.
+    /*
     externals: [
         {
             'isomorphic-fetch': {
@@ -27,7 +23,12 @@ module.exports = {
                 amd: 'isomorphic-fetch'
             }
         }
-    ],
+    ],    */
+
+
+    // Entry accepts a path or an object of entries.
+    // We'll be using the latter form given it's
+    // convenient with more complex configurations.
     entry: [path.join(PATHS.src, 'client/main.js')],
     output: {
         path: PATHS.dist,
@@ -170,20 +171,27 @@ new StatsWriterPlugin({
                 })
             }, {
                 test: /\.styl$/,
+                //loader: 'style-loader!css-loader/locals?module&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!stylus-loader',
+                //include: appPath
+
                 use: ExtractTextPlugin.extract({
                     fallbackLoader: 'style-loader',
                     loader: [
-                        'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+                        'css-loader',
+                        // No CSS Modules for the moment, it does not play
+                        // well with SSR
+                        //'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+                        //'css-loader/locals?module&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader!stylus-loader',
                         'postcss-loader',
                         'stylus-loader'
                     ]
+                })
         /*
                             options: {
                                 stylus: {
                                     use: [poststylus(['postcss-short', 'postcss-sorting', 'postcss-cssnext', 'rucksack-css'])]
                                 }
                             }            */
-                })
             }
         ]
     }

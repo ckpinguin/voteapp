@@ -57,6 +57,7 @@
     "html-webpack-plugin": "^2.24.1",
     "json-loader": "^0.5.4",
     "mocha": "^3.2.0",
+    "nib": "^1.1.2",
     "nodemon": "^1.11.0",
     "postcss-cssnext": "^2.9.0",
     "postcss-loader": "^1.2.0",

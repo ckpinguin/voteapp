@@ -1,3 +1,5 @@
+@require 'nib';
+
 // urls
 $url_0 = url('https://66.media.tumblr.com/02b1120d488856e3cfd2d983445d6f15/tumblr_ogvz90mmrI1vkb69vo4_1280.png');
 $url_1 = url('https://67.media.tumblr.com/adb0ff182c02f066ba6dce47b46c964d/tumblr_ogvz90mmrI1vkb69vo1_1280.png');
@@ -39,14 +41,358 @@ $font_5 = "Droid Serif";
 $font_site = $font_0, $font_1, $font_3, $font_4, $font_5;
 $font_droid = $font_5, $font_1, $font_2, $font_3, $font_4;
 
+/* BEGIN OF GLOBAL STYLES */
 body {
     // background $url_1 no-repeat
     font-weight: 600;
     font-family: $font_site;
 }
 
-:global .alert {
+.alert {
     background-color: $navy_blue;
     color: red;
     font-weight: 900;
 }
+
+.emphasis {
+    font-style: italic;
+    font-family: 'Lora', serif;
+    text-transform: none;
+}
+
+.root {
+    padding: 20px 10px;
+}
+/* END OF GLOBAL STYLES */
+
+// Quick reminder: ".class1 .class2" (space between) means: elements with
+//                 class2 that are descendant of class1
+//                 ".class1.class2" (no space between!) means: Elements with
+//                 class1 AND class2
+
+/* BEGIN OF COMPONENT STYLES */
+.app-ChoiceBar {
+    position: relative;
+    margin-bottom: 24px;
+    height: 40px;
+    border: 3px solid #FFB273;
+    border-radius: 10px;
+    background-color: #5CCCCC;
+    &:hover {
+        border: 3px solid #FF9640;
+        border-radius: 10px;
+        cursor: pointer;
+        & app-ChoiceBar-badge {
+            border: 1px solid #5CCCCC;
+            background-color: #FF9640;
+            color: #A60000;
+        }
+        & app-ChoiceBar-progress {
+            background-color: #FF9640;
+            cursor: pointer;
+        }
+    }
+    &-title {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        margin-top: -11px;
+        font-size: 16px;
+    }
+    &-badge {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        margin-top: -16px;
+        padding: 4px 8px;
+        width: 50px;
+        height: 24px;
+        border-radius: 10px;
+        background-color: white;
+        text-align: center;
+        font-size: 16px;
+    }
+    &-progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
+        height: 100%;
+        background-color: #FFB273;
+        white-space: nowrap;
+    }
+}
+
+.app-Layout {
+    &-header {
+        margin-bottom: 20px;
+        padding: 14px 14px 0 14px;
+        height: 46px;
+        background-color #A60000;
+        color: white;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 18px;
+    }
+    &-title {
+        border-bottom: 1px solid white;
+    }
+    &-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow: auto;
+        min-height: 100%;
+        width: 100%;
+        height: 100vh;
+        background-color: #6FD2D2;
+    }
+    &-main {
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 90%;
+    }
+}
+
+.app-LoginController {
+    margin-top: 20px;
+    & input {
+        font-size: 14px;
+        border: 3px solid #FFB273;
+        margin-bottom: 24px;
+        background-color: #5CCCCC;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        &:focus {
+            color: #A60000;
+            outline: 0;
+        }
+    }
+    &-head {
+
+    }
+    &-title {
+
+    }
+    &-loginForm {
+        margin-top: 20px;
+        & input {
+        font-size: 14px;
+        border: 3px solid #FFB273;
+        margin-bottom: 24px;
+        background-color: #5CCCCC;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -khtml-border-radius: 10px;
+}
+
+.LoginForm input::-moz-placeholder {
+        color: #A60000;
+}
+
+.LoginForm input::-webkit-input-placeholder {
+        color: #A60000;
+}
+
+.LoginForm input:-ms-input-placeholder {
+        color: #A60000;
+}
+
+.LoginForm input:focus {
+        color: #A60000;
+        outline: 0;
+}
+
+    }
+    &-buttonBar {
+
+    }
+    &-button {
+
+    }
+    &-button-disabled {
+
+    }
+}
+
+.app-VoteComposer {
+    &-description {
+        font-size: 22px;
+        padding: 0;
+        margin: 0;
+    }
+    &-head {
+        border-bottom: none;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    & input {
+        color: #A60000;
+        border: 0;
+        outline: 0;
+        margin: 0;
+        width: 100%;
+        &:hover {
+            background-color: #5CCCCC;
+        }
+        &:focus {
+            color: #A60000;
+            border: 0;
+            outline: 0;
+            background-color: white;
+        }
+    }
+    &-choice {
+        border: 3px solid #FFB273;
+        margin-bottom: 24px;
+        background-color: #5CCCCC;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -khtml-border-radius: 10px;
+        &:hover {
+            border: 3px solid #FF9640;
+        }
+        &:focus {
+            border: 3px solid #FF9640;
+        }
+    }
+    &-composeBody {
+        padding-bottom: 15px;
+    }
+}
+
+.app-VoteSummary {
+    &-row {
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        background-color: white;
+        color: #16B122;
+    }
+    &-selectable:hover {
+        background-color: #FFB273;
+        cursor: pointer;
+        &:hover .badge {
+            background-color: white;
+        }
+    }
+    &-title {
+        border-bottom: 1px solid white;
+    }
+    &-votesRow {
+        margin-left: 8.33%;
+        margin-right: 8.33%;
+        &>p {
+       font-size: 18px;
+        padding: 0;
+        margin: 0;
+        }
+    }
+    &-badge {
+        float: right;
+        padding: 4px 8px;
+        min-width: 12%;
+        border-radius: 10px;
+        background-color: #FFB273;
+        text-align: center;
+        font-size: 60%;
+    }
+    &-title {
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: normal;
+        font-size: 36px;
+    }
+    &-emphasis {
+        font-style: italic;
+        font-family: 'Lora', serif;
+        text-transform: none;
+    }
+}
+
+.app-VotingComponent {
+    &-row {
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        background-color: white;
+        color: #16B122;
+    }
+    &-votingRow {
+        margin-right: 0;
+        margin-left: 0;
+        &  .description {
+            margin: 0;
+            padding: 0;
+            font-size: 2px;
+        }
+    }
+    &-spacer {
+        margin-top: 40px;
+        margin-bottom: 40px;
+        padding: 10px 20px;
+    }
+    &-badge {
+        float: right;
+        padding: 4px 8px;
+        min-width: 12%;
+        border-radius: 10px;
+        background-color: #FFB273;
+        text-align: center;
+        font-size: 60%;
+    }
+    &-head {
+        border-bottom: none;
+    }
+    &-title {
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: normal;
+        font-size: 36px;
+    }
+    &-emphasis {
+        font-style: italic;
+        font-family: 'Lora', serif;
+        text-transform: none;
+    }
+    &-buttonBar {
+        border-top: 1px solid #5CCCCC;
+        padding-top: 15px;
+    }
+    &-button {
+        display: inline-block;
+        background-color: #5CCCCC;
+        padding: 8px 12px 8px 12px;
+        margin-right: 20px;
+        text-align: center;
+        border-radius: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        cursor: pointer;
+        &:hover {
+            background-color: #FFB273;
+        }
+    }
+}
+/* END OF COMPONENT STYLES */
