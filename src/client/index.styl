@@ -53,37 +53,6 @@ a {
     text-decoration: none;
 }
 
-.header {
-    margin: 0 0 20px 0;
-    height: 46px;
-    padding: 14px 14px 0 14px;
-    color: white;
-    background-color: #A60000;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
-    font-style: normal;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-}
-
-.background {
-    height: 100vh;
-    background-color: #6fd2d2;
-    width: 100%;
-    min-height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    overflow: auto;
-}
-
-.main {
-    margin: 0 auto;
-    width: 90%;
-    max-width: 1280px;
-}
-
 .alert {
     background-color: $navy_blue;
     color: red;
@@ -118,12 +87,12 @@ a {
         border: 3px solid #FF9640;
         border-radius: 10px;
         cursor: pointer;
-        & app-ChoiceBar-badge {
+        & ^[0]-badge {
             border: 1px solid #5CCCCC;
             background-color: #FF9640;
             color: #A60000;
         }
-        & app-ChoiceBar-progress {
+        & ^[0]-progress {
             background-color: #FF9640;
             cursor: pointer;
         }
@@ -260,10 +229,10 @@ a {
         &.selectable:hover {
             background-color: #FFB273;
             cursor: pointer;
-            & .app-VoteComposer-badge {
+            & ^[0]-badge {
                 background-color: white;
             }
-            :hover .app-VoteComposer-title {
+            :hover ^[0]-title {
                 border-bottom: 1px solid white;
             }
         }
@@ -383,7 +352,7 @@ a {
     &-selectable:hover {
         background-color: #FFB273;
         cursor: pointer;
-        &:hover .badge {
+        &:hover ^[0]-badge {
             background-color: white;
         }
     }
