@@ -14,7 +14,8 @@ export default class LoginController extends React.Component {
             const redirect = nextState.location.pathname;
             // Replace history, so user does not get back to
             // login screen by pressing "back" button
-            this.context.router.replaceState(`login${redirect}`);
+            //this.context.router.replaceState(`login${redirect}`);
+            replaceState(`login${redirect}`);
         }
     }
 
