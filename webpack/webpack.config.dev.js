@@ -30,7 +30,7 @@ module.exports = {
         path.join(PATHS.src, 'client/main.js')
     ],
     output: {
-        path: PATHS.dist,
+        path: PATHS.dist, // ignored in dev-mode
         filename: 'static/js/bundle.js',
         publicPath: PATHS.publicPathDev
     },

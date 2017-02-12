@@ -55,7 +55,13 @@ module.exports = {
                 warnings: false
             }
         }),
-        new ExtractTextPlugin({filename: 'static/css/[name].css', disable: false, allChunks: true}),
+        new ExtractTextPlugin(
+            {
+                filename: 'static/css/[name].css',
+                disable: false,
+                allChunks: true
+            }
+        ),
         // Write out stats.json file to build directory.
 
 
