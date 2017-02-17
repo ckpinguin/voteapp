@@ -12,32 +12,32 @@ class LoginPage extends React.Component {
         this.state = {
             email: null
         };
-   }
+    }
 
-   login() {
-       this.props.login(this.state.email);
-       this.redirect();
-   }
+    login() {
+        this.props.login(this.state.email);
+        this.redirect();
+    }
 
-   redirect() {
+    redirect() {
         const destination = `/${this.props.params.redirect
            ? this.props.params.redirect : ''}`;
         // We don't want login page in history
         this.props.replacePath(destination);
-   }
+    }
 
-   onChange(event) {
-       const email = event.target.value;
-       this.setState({
-           email
-       });
-   }
+    onChange(event) {
+        const email = event.target.value;
+        this.setState({
+            email
+        });
+    }
 
-   isValidEmail() {
-       return this.state.email;
-   }
+    isValidEmail() {
+        return this.state.email;
+    }
 
-   render() {
+    render() {
         this.props.setTitle('Login - Vote as a Service (VaaS)');
         return <div className="app-LoginPage-row">
             <div className="app-LoginPage-head">
@@ -57,7 +57,7 @@ class LoginPage extends React.Component {
                 </div>
             </div>
         </div>;
-   }
+    }
 }
 LoginPage.propTypes = {
     setTitle:       React.PropTypes.func.isRequired,

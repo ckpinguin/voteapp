@@ -18,7 +18,7 @@ function requireAuth(nextState, replaceState) {
     }
 }
 
-const routes = <Router>
+const routes = <Route>
         <Redirect from="/" to="/votes" />
         <Route path="/" component={Layout}>
             <Route path="login(/:redirect)" component="{LoginController}"/>
@@ -29,6 +29,6 @@ const routes = <Router>
                 onEnter={requireAuth} />
             <Route path="*" component={NoMatch}/>
         </Route>
-    </Router>;
+    </Route>;
 
 export default routes;

@@ -1,7 +1,7 @@
 import React from 'react';
 import VoteList from '../components/VoteList/VoteList';
 import VoteComposer from '../components/VoteComposer/VoteComposer';
-import { dd } from '../toolbox';
+//import { dd } from '../toolbox';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

@@ -19,4 +19,7 @@ const router = <Router history={history}>
 </Router>;
 
 const mount = document.getElementById('root');
-ReactDOM.render(router, mount);
+const provider = <Provider store={store}>
+    {router}
+</Provider>;
+ReactDOM.render(provider, mount);

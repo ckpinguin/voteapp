@@ -1,6 +1,6 @@
 import React from 'react';
 import VotingComponent from '../components/VotingComponent/VotingComponent';
-import { dd } from '../toolbox';
+//import { dd } from '../toolbox';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
