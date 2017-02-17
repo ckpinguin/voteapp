@@ -1,3 +1,4 @@
+// This is used as a mapping function in votes.js
 export default function convertVote(basicVote) {
     const totalVotes = basicVote.choices.reduce((prev, curr) =>
         prev + curr.count, 0);

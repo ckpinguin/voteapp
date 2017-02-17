@@ -4,8 +4,13 @@ import votes from './votes';
 import currentVote from './currentVote';
 import login from './login';
 
-export default combineReducers({
+import { routeReducer } from 'react-router-redux';
+
+const rootReducer = combineReducers({
     votes,
     currentVote,
-    login
+    login,
+    routing: routeReducer
 });
+
+export default rootReducer;

@@ -23,6 +23,7 @@ module.exports = {
         "no-console": 0,
         "no-unused-vars": 1,
         // "no-unexpected-multilines": 0,
+        "no-case-declarations": 0,
         "indent": [
             "warn", 4
         ],

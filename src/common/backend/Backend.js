@@ -21,8 +21,8 @@ export function fetchJson(path) {
 
     console.info('Backend: fetchJson ' + path);
     return fetch(url) // Returns a Promise
-    .then(response => response.json())
-    .catch(ex => { console.error('parsing failed', ex); });
+        .then(response => response.json())
+        .catch(ex => { console.error('parsing failed', ex); });
 }
 
 export function sendJson(method, path, payload={}) {

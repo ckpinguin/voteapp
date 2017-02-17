@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
-//import styles from './styles.styl';
 import { guid, dd } from '../../toolbox';
 
 /**
@@ -108,7 +106,7 @@ export default class VoteComposer extends React.Component {
 
         if (formCompleted) {
             // if all (except the last empty one) choices are filled
-            // the form is complete
+            // or have a title, the form is complete
             formCompleted = choices.every(
                 (c, ix) => ix === choicesCount - 1 || c.title
             );
@@ -185,15 +183,13 @@ export default class VoteComposer extends React.Component {
         return (
             <div className="app-VoteComposer-row app-VoteComposer-spacer"
                  onClick={this.activateIfNeeded}>
-                <Link to={'/compose'}>
-                    <h1 className="app-VoteComposer-title">
-                        <span className="app-VoteComposer-emphasis">
-                            What do <b>you</b> want to know?
-                        </span>
-                        <div className="app-VoteComposer-badge">Add voting</div>
-                    </h1>
-                    <p>Click here to leave your own question.</p>
-                </Link>
+                <h1 className="app-VoteComposer-title">
+                    <span className="app-VoteComposer-emphasis">
+                        What do <b>you</b> want to know?
+                    </span>
+                    <div className="app-VoteComposer-badge">Add voting</div>
+                </h1>
+                <p>Click here to leave your own question.</p>
             </div>
         );
     }

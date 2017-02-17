@@ -1,6 +1,4 @@
 import React from 'react';
-//import styles from './styles.styl';
-
 
 // Stateless functional component (SFC) is enough for just displaying stuff
 export default function ChoiceBar({title, count, percent, onClickHandler}) {
