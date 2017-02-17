@@ -1,11 +1,12 @@
 import React from 'react';
 import { RoutingContext, match } from 'react-router';
 import { renderToString } from 'react-dom/server';
+import { Provider } from 'react-redux;'
 import routes from '../common/routes';
-import votesCache from '../common/votesCache';
-var dd = require('../common/toolbox');
+import configureStore from '../common/store/configureStore';
+//var dd = require('../common/toolbox');
 
-export default function renderRoute(request, reply, initialData) {
+export default function renderRoute(request, reply, store = configureStore()) {
     const location = request.path;
     match({
         routes,
@@ -18,12 +19,28 @@ export default function renderRoute(request, reply, initialData) {
         } else if (renderProps == null) {
             reply('Not found').code(404);
         } else {
+            preRender(renderProps.components, renderProps, store)
+                .then(() => {
+                    const html = renderToString(
+                        <Provider store={store}>
+                            <RoutingContext {...renderProps} />
+                        </Provider>
+                    );
+                    const initialData = store.getState();
+                    reply(renderFullPage(html, initialData));
+                }).catch((error) => reply(error).code(500));
             console.log('SSR: populating cache and pre-rendering HTML');
-            votesCache.populate(initialData);
-            const html = renderToString(<RoutingContext {...renderProps}/>);
-            reply(renderFullPage(html, initialData));
         }
     });
+}
+
+function preRender(components, renderProps, store) {
+    const preRenderComponents = components.filter(
+        (component) => component && component.preRender);
+    const preRenderPromises = preRenderComponents.map(
+        ((component) => store.dispatch(component.preRender(renderProps)))
+    );
+    return Promise.all(preRenderPromises);
 }
 
 function renderFullPage(html, initialData) {
