@@ -1,15 +1,19 @@
 import 'babel-polyfill';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, browserHistory } from 'react-router';
+
+import { Router } from 'react-router';
+import { Provider } from 'react-redux';
+
+import history from '../common/history';
+import store from '../common/store/store';
+
 import routes from '../common/routes';
-import votesCache from '../common/votesCache';
+
 import '../assets/favicon.ico';
 import './index.styl';
-const isBrowser = typeof window !== 'undefined';
-if (isBrowser) votesCache.populate(window.__INITIAL_STATE__);
 
-const history = browserHistory;
 const router = <Router history={history}>
  { routes }
 </Router>;
