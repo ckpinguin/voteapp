@@ -10,7 +10,7 @@ export default function configureStore(initialState) {
     const store = compose(
         applyMiddleware(
             thunk,
-            reduxRouterMiddleware
+            //reduxRouterMiddleware
             )
         )(createStore)(rootRecuder, initialState);
 
