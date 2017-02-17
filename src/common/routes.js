@@ -1,20 +1,32 @@
 import React from 'react';
-import { Router, Route, Redirect } from 'react-router';
+import { Route, Redirect } from 'react-router';
+
 import Layout from './components/Layout/Layout';
-import VoteController from './components/Controller/VoteController';
-import SingleVoteController from './components/Controller/SingleVoteController';
-import VoteComposerController from './components/VoteComposer/VoteComposerController';
-import LoginController from './components/Login/LoginController';
+import VotePage from './containers/VotePage';
+import SingleVotePage from './containers/SingleVotePage';
+import VoteComposerPage from './containers/VoteComposerPage';
+import LoginPage from './containers/LoginPage';
 import NoMatch from './components/NoMatch/NoMatch';
+
+import store from './store/store';
+
+function requireAuth(nextState, replaceState) {
+    const state = store.getState();
+    if (!state.login) {
+        const redirect = nextState.location.pathname;
+        replaceState(null, `/login${redirect}`);
+    }
+}
 
 const routes = <Router>
         <Redirect from="/" to="/votes" />
         <Route path="/" component={Layout}>
             <Route path="login(/:redirect)" component="{LoginController}"/>
-            <Route path="votes" component={VoteController}/>
-            <Route path="votes/:id" component={SingleVoteController}/>
-            <Route path="compose" component={VoteComposerController}
-                onEnter={LoginController.requireAuth} />
+            <Route path="votes" component={VotePage}/>
+            <Route path="votes/:id" component={SingleVotePage}/>
+            <Route path="login(/:redirect)" component={LoginPage}/>
+            <Route path="compose" component={VoteComposerPage}
+                onEnter={requireAuth} />
             <Route path="*" component={NoMatch}/>
         </Route>
     </Router>;
