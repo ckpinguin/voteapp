@@ -2,18 +2,13 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import rootReducer from '../reducers';
 import thunk from 'redux-thunk';
 
-import history from '../history';
-import { syncHistoryWithStore } from 'react-router-redux';
-
-export default function configureStore(initialState) {
-    const reduxRouterMiddleware = syncHistoryWithStore(history);
+export default function configureStore(initialState = {}) {
     const store = createStore(
         rootReducer,
         initialState,
         compose(
             applyMiddleware(
                 thunk,
-                reduxRouterMiddleware
             )
         )
     );
