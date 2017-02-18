@@ -9,13 +9,14 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../../webpack/webpack.config.dev';
 
+import React from 'react';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import configureStore from '../common/store/configureStore';
 import { fetchJson } from '../common/backend/Backend';
 
 import Layout from '../common/components/Layout/Layout';
-import VoteList from '../common/components/VoteList/VoteList';
+import VotePage from '../common/containers/VotePage';
 
 //import renderRoute from './renderRoute';
 //import dd from '../common/toolbox';
@@ -24,10 +25,11 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 app.use(compression());
+
 // Use this middleware to set up hot module reloading via webpack.
 const compiler = webpack(webpackConfig);
-//app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: webpackConfig.output.publicPath }));
-//app.use(webpackHotMiddleware(compiler));
+app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: webpackConfig.output.publicPath }));
+app.use(webpackHotMiddleware(compiler));
 
 // This is fired every time the server side receives a request
 app.use(handleRender);
@@ -53,7 +55,12 @@ app.use(function(req, res, next) {
 function handleRender(req, res) {
     fetchJson('/api/votes')
         .then((allVotes) => {
-            const preloadedState = { votes: allVotes };
+            const preloadedState = {
+                votes: allVotes,
+                currentVote: {},
+                login: false,
+                routing: {}
+            };
 
             // Create a new Redux store instance with a predifined state
             const store = configureStore(preloadedState);
@@ -62,7 +69,7 @@ function handleRender(req, res) {
             const html = renderToString(
                 <Provider store={store}>
                     <Layout>
-                        <VoteList />
+                        <VotePage />
                     </Layout>
                 </Provider>);
 

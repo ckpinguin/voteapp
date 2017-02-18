@@ -25,7 +25,7 @@ function dd(variable, varName, sender='') {
     varName = varName || '';
     varNameOutput = varName ? varName + ':' : '';
 
-    console.debug(sender + ' => ' + varNameOutput, variable, ' (' + (typeof variable) + ')');
+    console.log(sender + ' => ' + varNameOutput, variable, ' (' + (typeof variable) + ')');
 }
 
 /**

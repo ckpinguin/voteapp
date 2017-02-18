@@ -29,7 +29,7 @@ export function sendJson(method, path, payload={}) {
     const url = `${BACKEND_URL}${path}`;
 
     console.info('Backend: sendJson ' + method + ' ' + path);
-    console.debug('Backend: sendJson got payload ' + JSON.stringify(payload));
+    console.log('Backend: sendJson got payload ' + JSON.stringify(payload));
     return fetch(url, { // Returns a Promise
         method:  method,
         body:    JSON.stringify(payload, null, 4),
