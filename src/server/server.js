@@ -28,18 +28,17 @@ app.use(compression());
 
 // Use this middleware to set up hot module reloading via webpack.
 const compiler = webpack(webpackConfig);
-app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: webpackConfig.output.publicPath }));
-app.use(webpackHotMiddleware(compiler));
+//app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: webpackConfig.output.publicPath }));
+//app.use(webpackHotMiddleware(compiler));
 
-// This is fired every time the server side receives a request
-app.use(handleRender);
+
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-//app.use(express.static(path.join(__dirname, '../../../dist')));
+app.use(express.static(path.join(__dirname, '../../../dist')));
 
 // Allow CORS
 /*
@@ -50,7 +49,8 @@ app.use(function(req, res, next) {
     next();
 });*/
 
-
+// This is efired every time the server side receives a request
+app.use(handleRender);
 
 function handleRender(req, res) {
     fetchJson('/api/votes')
@@ -87,6 +87,7 @@ function renderFullPage(html, preloadedState) {
         <html>
             <head>
                 <title>Vote as a Service (VaaS) (serverside)</title>
+                <ilnk rel="stylesheet" type="text/cs" href="/dist/static/css/main.css">
             </head>
             <body>
                 <div id="root">${html}</div>
@@ -94,7 +95,7 @@ function renderFullPage(html, preloadedState) {
                     window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)
                         .replace(/</g, '\\x3c')}
                 </script>
-                <script src="/dist/static/js/bundle.js"></script>
+                <script src="/static/bundle.js"></script>
             </body>
         </html>
     `;
