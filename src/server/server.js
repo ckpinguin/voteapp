@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import routes from '../common/routes';
 
-import { browserHistory } from 'react-router';
+import { browserHistory, createMemoryHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import configureStore from '../common/store/configureStore';
@@ -31,7 +31,8 @@ function handleRender(req, res) {
 
             // Create a new Redux store instance with a predifined state
             const store = configureStore(preloadedState);
-            const history = syncHistoryWithStore(browserHistory, store);
+            //const history = syncHistoryWithStore(browserHistory, store);
+            const history = createMemoryHistory();
             //const history = browserHistory;
             const router = <Router history={history}>
                     { routes }
