@@ -1,64 +1,98 @@
-
 import path from 'path';
-var express = require('express');
-var bodyParser = require('body-parser');
-var compression = require('compression');
-var cors = require('cors');
-var fetchJson = require('../common/backend/Backend');
-var renderRoute = require('./renderRoute');
-var dd = require('../common/toolbox');
+import express from 'express';
+import bodyParser from 'body-parser';
+import compression from 'compression';
+import cors from 'cors';
 
-var PORT = process.env.PORT || 8080;
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from '../../webpack/webpack.config.dev';
 
-var app = express();
+import { Provider } from 'react-redux';
+import { renderToString } from 'react-dom/server';
+import configureStore from '../common/store/configureStore';
+import { fetchJson } from '../common/backend/Backend';
+
+import Layout from '../common/components/Layout/Layout';
+import VoteList from '../common/components/VoteList/VoteList';
+
+//import renderRoute from './renderRoute';
+//import dd from '../common/toolbox';
+
+const PORT = process.env.PORT || 8080;
+
+const app = express();
 app.use(compression());
+// Use this middleware to set up hot module reloading via webpack.
+const compiler = webpack(webpackConfig);
+//app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: webpackConfig.output.publicPath }));
+//app.use(webpackHotMiddleware(compiler));
+
+// This is fired every time the server side receives a request
+app.use(handleRender);
+
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '../../../dist')));
+//app.use(express.static(path.join(__dirname, '../../../dist')));
 
 // Allow CORS
+/*
 app.use(cors());
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
-});
+});*/
 
-// ROUTES FOR OUR API
-// =============================================================================
-var router = express.Router();
 
-// Static delivery (bundle to client)
-app.get('/', function(request, response) {
-    response.sendFile(__dirname + '/dist/index.html');
-});
 
-router.get('/votes', function(req, res) {
-    console.log('Got a GET request for /votes');
-    console.info('from: ' + req.ip + ', for ' + req.hostname);
-    fetchJson('/api/votes').then(allVotes => {
-        renderRoute(req, res, {allVotes});
-    });
-});
+function handleRender(req, res) {
+    fetchJson('/api/votes')
+        .then((allVotes) => {
+            const preloadedState = { votes: allVotes };
 
-router.get('/votes/:voteId', function(req, res) {
-    console.log('Got a GET request for /votes/' + voteId);
-    console.info('from: ' + req.ip + ', for ' + req.hostname);
-    const voteId = req.params.voteId;
-    fetchJson(`/api/votes/${voteId}`)
-        .then(vote => {
-            renderRoute(req, res, {vote});
+            // Create a new Redux store instance with a predifined state
+            const store = configureStore(preloadedState);
+
+            // Render the component to a string
+            const html = renderToString(
+                <Provider store={store}>
+                    <Layout>
+                        <VoteList />
+                    </Layout>
+                </Provider>);
+
+            // Grab the initial state from our Redux store
+            const finalState = store.getState();
+
+            // Send the rendered page back to the client
+            res.send(renderFullPage(html, finalState));
         });
-});
+}
 
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /
-app.use('/', router);
-
-app.listen(PORT, function(error) {
+function renderFullPage(html, preloadedState) {
+    return `
+        <!doctype html>
+        <html>
+            <head>
+                <title>Vote as a Service (VaaS) (serverside)</title>
+            </head>
+            <body>
+                <div id="root">${html}</div>
+                <script>
+                    window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)
+                        .replace(/</g, '\\x3c')}
+                </script>
+                <script src="/dist/static/js/bundle.js"></script>
+            </body>
+        </html>
+    `;
+}
+app.listen(PORT, (error) => {
     if (error) {
         console.error(error);
     } else {

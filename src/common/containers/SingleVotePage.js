@@ -43,7 +43,7 @@ SingleVotePage.propTypes = {
     setTitle:       React.PropTypes.func.isRequired,
     routeToMain:    React.PropTypes.func.isRequired,
     registerVote:   React.PropTypes.func.isRequired,
-    loadVode:       React.PropTypes.func.isRequired,
+    loadVote:       React.PropTypes.func.isRequired,
     params:         React.PropTypes.object.isRequired
 };
 
