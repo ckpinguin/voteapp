@@ -1,7 +1,7 @@
 import React from 'react';
 import { RoutingContext, match } from 'react-router';
 import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux;'
+import { Provider } from 'react-redux';
 import routes from '../common/routes';
 import configureStore from '../common/store/configureStore';
 //var dd = require('../common/toolbox');
