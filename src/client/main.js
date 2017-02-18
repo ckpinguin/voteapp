@@ -16,15 +16,16 @@ import routes from '../common/routes';
 import '../assets/favicon.ico';
 import './index.styl';
 
+const preloadedState = window.__PRELOADED_STATE__;
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 const router = <Router history={history}>
- { routes }
-</Router>;
+     { routes }
+    </Router>;
 
 const mount = document.getElementById('root');
 const provider = <Provider store={store}>
-    {router}
-</Provider>;
+        {router}
+    </Provider>;
 ReactDOM.render(provider, mount);

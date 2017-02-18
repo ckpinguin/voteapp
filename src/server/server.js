@@ -11,8 +11,15 @@ import webpackConfig from '../../webpack/webpack.config.dev';
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { renderToString } from 'react-dom/server';
+import { Router } from 'react-router';
+import routes from '../common/routes';
+
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+
 import configureStore from '../common/store/configureStore';
+
+import { renderToString } from 'react-dom/server';
 import { fetchJson } from '../common/backend/Backend';
 
 import Layout from '../common/components/Layout/Layout';
@@ -26,8 +33,10 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 app.use(compression());
 
+//const router = express.Router();
+
 // Use this middleware to set up hot module reloading via webpack.
-const compiler = webpack(webpackConfig);
+//const compiler = webpack(webpackConfig);
 //app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: webpackConfig.output.publicPath }));
 //app.use(webpackHotMiddleware(compiler));
 
@@ -38,7 +47,9 @@ const compiler = webpack(webpackConfig);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '../../../dist')));
+
+// BUG: This is stopping SSR to work
+//app.use(express.static(path.join(__dirname, '../../../dist')));
 
 // Allow CORS
 /*
@@ -49,10 +60,33 @@ app.use(function(req, res, next) {
     next();
 });*/
 
-// This is efired every time the server side receives a request
-app.use(handleRender);
+// Static delivery (bundle to client). First entry point SSR
+app.get('/', function(request, response) {
+    //response.sendFile(__dirname + '/dist/index.html');
+    handleRender(request, response);
+});
+app.get('/votes', function(request, response) {
+    //response.sendFile(__dirname + '/dist/index.html');
+    handleRender(request, response);
+});
+
+/*
+router.get('/votes', function(req, res) {
+    console.log('Got a GET request for /votes');
+    console.info('from: ' + req.ip + ', for ' + req.hostname);
+    //fetchJson('/api/votes').then(allVotes => {
+    //    renderRoute(req, res, {allVotes});
+    //});
+});*/
+
+
+//app.use('/', router);
+
+// This is fired every time the server side receives a request
+//app.use(handleRender);
 
 function handleRender(req, res) {
+    console.log('SSR: handleRender');
     fetchJson('/api/votes')
         .then((allVotes) => {
             const preloadedState = {
@@ -64,14 +98,15 @@ function handleRender(req, res) {
 
             // Create a new Redux store instance with a predifined state
             const store = configureStore(preloadedState);
-
+            const history = syncHistoryWithStore(browserHistory, store);
+            const router = <Router history={history}>
+                    { routes }
+                </Router>;
+            const provider = <Provider store={store}>
+                    {router}
+                </Provider>;
             // Render the component to a string
-            const html = renderToString(
-                <Provider store={store}>
-                    <Layout>
-                        <VotePage />
-                    </Layout>
-                </Provider>);
+            const html = renderToString(provider);
 
             // Grab the initial state from our Redux store
             const finalState = store.getState();
@@ -87,7 +122,7 @@ function renderFullPage(html, preloadedState) {
         <html>
             <head>
                 <title>Vote as a Service (VaaS) (serverside)</title>
-                <ilnk rel="stylesheet" type="text/cs" href="/dist/static/css/main.css">
+                <ilnk rel="stylesheet" type="text/css" href="/static/css/main.css">
             </head>
             <body>
                 <div id="root">${html}</div>

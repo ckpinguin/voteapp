@@ -12,6 +12,22 @@ const PATHS = {
     publicPathProd: './' // maybe '/dist/' ?
 };
 
+// Create multiple instances
+const extractCSS = new ExtractTextPlugin(
+    {
+        filename: 'static/css/[name].css',
+        disable: false,
+        allChunks: true
+    }
+);
+const extractStylus = new ExtractTextPlugin(
+    {
+        filename: 'static/css/[name].styl',
+        disable: false,
+        allChunks: true
+    }
+);
+
 module.exports = {
     externals: [
         {
@@ -26,11 +42,12 @@ module.exports = {
     // Entry accepts a path or an object of entries.
     // We'll be using the latter form given it's
     // convenient with more complex configurations.
-    entry: [path.join(PATHS.src, 'client/main.js')],
+    entry: [
+        path.join(PATHS.src, 'client/main.js')
+    ],
     output: {
         path: PATHS.dist,
         filename: 'static/js/bundle.js',
-        //publicPath: PATHS.publicPathDev,
         publicPath: PATHS.publicPathProd
     },
     plugins: [
@@ -57,26 +74,11 @@ module.exports = {
         }),
         new ExtractTextPlugin(
             {
-                filename: 'static/css/[name].css',
+                filename: path.join(PATHS.src, 'client/static/css/[name].styl'),
                 disable: false,
                 allChunks: true
             }
         ),
-        // Write out stats.json file to build directory.
-
-
-/*
-new StatsWriterPlugin({
-            transform: function(data) {
-                return {
-                    main: data.assetsByChunkName.main[0],
-                    css: data.assetsByChunkName.main[1]
-                };
-            }
-        })*/
-
-
-
     ],
     stats: { // webpack 2 option
         colors: true,
@@ -164,37 +166,33 @@ new StatsWriterPlugin({
                 }
             }, {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
-                    loader: [
-                        'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-                        'postcss-loader',
-                        'stylus-loader'
-                    ],
-                })
+                use: ExtractTextPlugin.extract(
+                    {
+                        fallbackLoader: 'style-loader',
+                        loader: [
+                            //'style-loader',
+                            'css-loader?sourceMap&importLoaders=1',
+                            'postcss-loader'
+                        ],
+                    }
+                )
             }, {
                 test: /\.styl$/,
-                //loader: 'style-loader!css-loader/locals?module&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!stylus-loader',
-                //include: appPath
-
-                use: ExtractTextPlugin.extract({
-                    fallbackLoader: 'style-loader',
-                    loader: [
-                        'css-loader',
-                        // No CSS Modules for the moment, it does not play
-                        // well with SSR
-                        //'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-                        //'css-loader/locals?module&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader!stylus-loader',
-                        'postcss-loader',
-                        'stylus-loader'
-                    ]
-                })
-        /*
-                            options: {
-                                stylus: {
-                                    use: [poststylus(['postcss-short', 'postcss-sorting', 'postcss-cssnext', 'rucksack-css'])]
-                                }
-                            }            */
+                use: ExtractTextPlugin.extract(
+                    {
+                        fallbackLoader: 'style-loader',
+                        loader: [
+                            //'style-loader',
+                            'css-loader?sourceMap&importLoaders=1',
+                            // No CSS Modules for the moment, it does not play
+                            // well with SSR
+                            //'css-loader?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+                            //'css-loader/locals?module&localIdentName=[path]___[name]__[local]___[hash:base64:5]!postcss-loader!stylus-loader',
+                            'postcss-loader',
+                            'stylus-loader'
+                        ]
+                    }
+                )
             }
         ]
     }

@@ -26,7 +26,6 @@ module.exports = {
     // We'll be using the latter form given it's
     // convenient with more complex configurations.
     entry: [
-        //'webpack-hot-middleware/client', // webpack-dev-server handles this
         path.join(PATHS.src, 'client/main.js')
     ],
     output: {
@@ -82,7 +81,6 @@ module.exports = {
                         //name: 'static/media/[name].[hash:8].[ext]'
                     }
                 }
-
             },
             // Process JS with Babel.
             {
@@ -129,10 +127,12 @@ module.exports = {
                 }
             }, {
                 test: /\.css$/,
-                exclude: /node_modules/,
                 loaders: [
                     {
-                        loader: 'style-loader?sourceMap'
+                        loader: 'style-loader?sourceMap',
+                        options: {
+                            sourceMap: true
+                        }
                     }, {
                         loader: 'css-loader',
                         options: {
@@ -147,11 +147,11 @@ module.exports = {
                 ]
             }, {
                 test: /\.styl$/,
-                exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'style-loader?sourceMap',
+                        loader: 'style-loader',
                         options: {
+                            sourceMap: true,
                             require: 'autoprefixer'
                         }
                     }, {
