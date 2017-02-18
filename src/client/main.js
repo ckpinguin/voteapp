@@ -17,7 +17,7 @@ import '../assets/favicon.ico';
 import './index.styl';
 
 const preloadedState = window.__PRELOADED_STATE__;
-const store = configureStore();
+const store = configureStore(preloadedState);
 const history = syncHistoryWithStore(browserHistory, store);
 
 const router = <Router history={history}>
