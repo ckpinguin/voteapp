@@ -1,7 +1,7 @@
 import expect from 'expect';
-import convertVote from '../../src/common/backend/convertVote';
-import rawData from '../fixtures/rawVote';
-import expectedData from '../fixtures/convertedVote';
+import convertVote from '../../../src/common/backend/convertVote';
+import rawData from '../../fixtures/rawVote';
+import expectedData from '../../fixtures/convertedVote';
 
 describe('Backend', () => {
     describe('convertVote', () => {

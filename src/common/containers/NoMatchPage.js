@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function NoMatch() {
+export default function NoMatchPage() {
     return <div>Page not found</div>;
 }
