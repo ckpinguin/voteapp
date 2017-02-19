@@ -12,6 +12,7 @@
   "scripts": {
     "test": "mocha test --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
+    "test:integration": "karma start --single-run",
     "build:clean": "rimraf ./dist",
     "build:prod": "npm run build:clean && cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js -p ",
     "start": "npm run dev",
