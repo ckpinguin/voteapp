@@ -10,7 +10,8 @@ const PATHS = {
     publicPathProd: './'
 };
 
-module.exports = {
+exports.webpackConfig = webPackConfig;
+const webPackConfig = {
     devtool: 'source-map',
     externals: [
         {
@@ -182,4 +183,4 @@ module.exports = {
             }
         ]
     }
-};
+},

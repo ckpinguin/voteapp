@@ -36,7 +36,11 @@ module.exports = {
                 commonjs2: 'isomorphic-fetch',
                 commonjs: 'isomorphic-fetch',
                 amd: 'isomorphic-fetch'
-            }
+            },
+            // Needed for karma-webpack to load correctly
+            'react/addons': 'react/addons',
+            'react/lib/ExecutionEnvironment': 'react/lib/ExecutionEnvironment',
+            'react/lib/ReactContext': 'react/lib/ReactContext',
         }
     ],
     // Entry accepts a path or an object of entries.
