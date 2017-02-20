@@ -18,7 +18,7 @@
     "build:prod": "npm run build:clean && cross-env NODE_ENV=production webpack --config webpack/webpack.config.prod.js -p ",
     "start": "npm run dev",
     "start:prod": "node src/server/index.js",
-    "dev": "webpack-dev-server --config webpack/webpack.config.dev.js --host $(hostname -I) --inline --hot --progress --colors",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack/webpack.config.dev.js --host $(hostname -I) --inline --hot --progress --colors",
     "babelize": "babel --watch=./src --out-dir=./babelbuild"
   },
   "engines": {
@@ -102,6 +102,7 @@
     "react-dev-utils": "^0.5.0",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
+    "remote-redux-devtools": "^0.5.7",
     "rimraf": "^2.5.4",
     "rucksack-css": "^0.9.1",
     "style": "0.0.3",
