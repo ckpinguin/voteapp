@@ -110,6 +110,7 @@
     "stylint": "^1.5.9",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.5.0",
+    "unexpected": "^10.26.0",
     "url-loader": "^0.5.7",
     "watchify": "^3.9.0",
     "webpack": "^2.2.1",

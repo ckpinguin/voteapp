@@ -1,4 +1,5 @@
-import expect, {createSpy, spyOn} from 'expect';
+import {createSpy, spyOn} from 'expect';
+import expect from 'unexpected';
 import * as Backend from '../../../src/common/backend/Backend';
 import * as actions from '../../../src/common/actions';
 import rawVote from '../../fixtures/rawVote';
@@ -23,7 +24,7 @@ describe('Actions', () => {
         });
     };
 
-    it('shout create login action', () => {
+    it('should create login action', () => {
         const action = actions.login('lemmy');
         expect(action).toEqual({type: actions.LOGIN, username: 'lemmy'});
     });
