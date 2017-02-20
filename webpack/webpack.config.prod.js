@@ -12,22 +12,6 @@ const PATHS = {
     publicPathProd: './' // maybe '/dist/' ?
 };
 
-// Create multiple instances
-const extractCSS = new ExtractTextPlugin(
-    {
-        filename: 'static/css/[name].css',
-        disable: false,
-        allChunks: true
-    }
-);
-const extractStylus = new ExtractTextPlugin(
-    {
-        filename: 'static/css/[name].styl',
-        disable: false,
-        allChunks: true
-    }
-);
-
 module.exports = {
     externals: [
         {
@@ -78,7 +62,7 @@ module.exports = {
         }),
         new ExtractTextPlugin(
             {
-                filename: path.join(PATHS.src, 'client/static/css/[name].styl'),
+                filename: 'static/css/[name].css',
                 disable: false,
                 allChunks: true
             }
@@ -172,8 +156,8 @@ module.exports = {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract(
                     {
-                        fallbackLoader: 'style-loader',
-                        loader: [
+                        fallback: 'style-loader',
+                        use: [
                             //'style-loader',
                             'css-loader?sourceMap&importLoaders=1',
                             'postcss-loader'
@@ -184,8 +168,8 @@ module.exports = {
                 test: /\.styl$/,
                 use: ExtractTextPlugin.extract(
                     {
-                        fallbackLoader: 'style-loader',
-                        loader: [
+                        fallback: 'style-loader',
+                        use: [
                             //'style-loader',
                             'css-loader?sourceMap&importLoaders=1',
                             // No CSS Modules for the moment, it does not play
