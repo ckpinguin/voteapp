@@ -1,10 +1,11 @@
 import expect from 'expect';
 import jsdom from 'mocha-jsdom';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
-import VoteList from '../../../src/common/components/VoteList/VoteList';
-import VoteSummary from '../../../src/common/components/VoteSummary/VoteSummary';
-import votes from '../../fixtures/convertedVotes';
+import VoteList from '../../src/common/components/VoteList/VoteList';
+import VoteSummary from '../../src/common/components/VoteSummary/VoteSummary';
+import votes from '../fixtures/convertedVotes';
 import { createMemoryHistory, Link, Route, Router } from 'react-router';
 
 describe('VoteList', () => {

@@ -6,10 +6,11 @@ import TestUtils from 'react-addons-test-utils';
 
 import * as Actions from '../../src/common/actions';
 import routes from '../../src/common/routes';
-import history from '../../src/common/history';
 import store from '../../src/common/store/store';
-
 import votes from '../fixtures/convertedVotes';
+
+import { createMemoryHistory } from 'react-router';
+const history = createMemoryHistory('/');
 
 function createResponse(jsonResponse, status = 200, contentType = 'application/json') {
     const response = new Response(JSON.stringify(jsonResponse), {
