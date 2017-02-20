@@ -2,9 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 
 const BASE_DIR = './';
-console.log("=======================================================");
+console.log('=======================================================');
 console.log(path.join(__dirname, 'node_modules'));
-console.log("================================================================");
+console.log('================================================================');
 module.exports = function(config) {
   config.set({
     browsers:   ['PhantomJS'],
@@ -13,11 +13,12 @@ module.exports = function(config) {
     reporters:  ['mocha'],
 
     files: [
-      `${BASE_DIR}/test/integration_test/test_index.js`
+      `${BASE_DIR}/test/integration/test_index.js`
     ],
 
     preprocessors: {
-      [`${BASE_DIR}/test/integration_test/test_index.js`]: ['webpack', 'sourcemap']
+      //[`${BASE_DIR}/test/integration/test_index.js`]: ['webpack', 'sourcemap'],
+      //[`${BASE_DIR}/test/integration/test_index.js`]: ['babel']
     },
 
     webpack: {
