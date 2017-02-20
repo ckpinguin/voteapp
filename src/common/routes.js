@@ -6,7 +6,7 @@ import VotePage from './containers/VotePage';
 import SingleVotePage from './containers/SingleVotePage';
 import VoteComposerPage from './containers/VoteComposerPage';
 import LoginPage from './containers/LoginPage';
-import NoMatch from './components/NoMatch/NoMatch';
+import NoMatch from './containers/NoMatchPage';
 
 import store from './store/store';
 
