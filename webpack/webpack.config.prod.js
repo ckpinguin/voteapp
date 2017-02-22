@@ -94,7 +94,7 @@ module.exports = {
                 test: /\.(jpg|png|ico)$/,
                 exclude: [
                     /\.html$/,
-                    /\.(js|jsx)$/,
+                    /\.jsx?$/,
                     /\.css$/,
                     /\.json$/,
                     /\.svg$/,
